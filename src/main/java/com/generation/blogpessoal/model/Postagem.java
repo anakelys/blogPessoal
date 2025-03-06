@@ -4,14 +4,16 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-
 
 
 @Entity
@@ -32,6 +34,18 @@ public class Postagem {
 	
 	@UpdateTimestamp
 	private LocalDateTime data;
+	
+	@ManyToOne //classe postagem são muitos : classe tema é um (de muitos para um) 06032025
+	@JsonIgnoreProperties("postagem")
+	private Tema tema; //adicionando  objeto tema (id, descrição) 06032025
+	
+	public Tema getTema() { //06032025
+		return tema;
+	}
+
+	public void setTema(Tema tema) { //06032025
+		this.tema = tema;
+	}
 
 	public Long getId() {
 		return id;
