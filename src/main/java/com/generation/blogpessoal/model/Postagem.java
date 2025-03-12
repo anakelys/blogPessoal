@@ -35,10 +35,23 @@ public class Postagem {
 	@UpdateTimestamp
 	private LocalDateTime data;
 	
+	
 	@ManyToOne //classe postagem são muitos : classe tema é um (de muitos para um) 06032025
 	@JsonIgnoreProperties("postagem")
 	private Tema tema; //adicionando  objeto tema (id, descrição) 06032025
 	
+	@ManyToOne //classe postagem são muitos : classe tema é um (de muitos para um) 06032025
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public Tema getTema() { //06032025
 		return tema;
 	}
